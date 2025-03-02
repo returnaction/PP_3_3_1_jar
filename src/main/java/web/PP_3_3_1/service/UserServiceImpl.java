@@ -1,5 +1,6 @@
 package web.PP_3_3_1.service;
 
+import jakarta.transaction.Transactional;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import web.PP_3_3_1.model.User;
@@ -18,6 +19,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
+    @Transactional
     public void add(User user) {
         userRepository.save(user);
     }
@@ -32,11 +34,13 @@ public class UserServiceImpl implements UserService {
         return userRepository.findById(id).get();
     }
 
+    @Transactional
     @Override
     public void update(User user) {
         userRepository.save(user);
     }
 
+    @Transactional
     @Override
     public void delete(Long id) {
         userRepository.deleteById(id);
